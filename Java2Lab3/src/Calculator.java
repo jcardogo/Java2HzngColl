@@ -1,3 +1,5 @@
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,6 +21,7 @@ public class Calculator extends JFrame implements ActionListener{
 	JButton cebtn = new JButton("Ce");
 	JButton bbtn = new JButton("<--");
 	JButton signbtn = new JButton("+/-");
+	JTextField tf1 = new JTextField();
 	float nbr1 = 0;
 	float nbr2 = 0;
 	float result = 0;
@@ -39,7 +42,7 @@ public class Calculator extends JFrame implements ActionListener{
 		botPan.setBackground(Color.WHITE);
 		
 		// Insert the text box
-				JTextField tf1 = new JTextField();
+
 				tf1.setPreferredSize(new Dimension(350,50));
 				tf1.setFont(new Font("Arial", Font.PLAIN, 40));
 				tf1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -127,7 +130,13 @@ public class Calculator extends JFrame implements ActionListener{
 			});
 			btns[13].addActionListener( new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					tf1.setText(tf1.getText() + "." );
+					String datver = tf1.getText();
+				      //Invoking the index of method
+				      int i = datver.indexOf(".");
+				      if(i!=-1) {
+				      } else {
+				    	  tf1.setText(tf1.getText() + "." );
+				      }
 				}
 			});
 		
@@ -135,6 +144,7 @@ public class Calculator extends JFrame implements ActionListener{
 					
 			btns[15].addActionListener( new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
+					new equals();
 					String n1s = tf1.getText();
 					if (n1s.isEmpty()==true) {
 						nbr1 = 0;
@@ -149,6 +159,7 @@ public class Calculator extends JFrame implements ActionListener{
 			});
 			btns[3].addActionListener( new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
+					new equals();
 					String n1s = tf1.getText();
 					if (n1s.isEmpty()==true) {
 						nbr1 = 0;
@@ -163,6 +174,7 @@ public class Calculator extends JFrame implements ActionListener{
 			});
 			btns[7].addActionListener( new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
+					new equals();
 					String n1s = tf1.getText();
 					if (n1s.isEmpty()==true) {
 						nbr1 = 0;
@@ -177,6 +189,7 @@ public class Calculator extends JFrame implements ActionListener{
 			});
 			btns[11].addActionListener( new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
+					new equals();
 					String n1s = tf1.getText();
 					if (n1s.isEmpty()==true) {
 						nbr1 = 0;
@@ -193,18 +206,7 @@ public class Calculator extends JFrame implements ActionListener{
 			//Main executor
 			btns[14].addActionListener( new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					nbr2 = Float.valueOf(tf1.getText());
-					if(Oper.equals("+")) {
-						tf1.setText(Float.toString(nbr1 + nbr2));}
-						else if (Oper.equals("*")) {
-						tf1.setText(Float.toString(nbr1 * nbr2));}
-						else if (Oper.equals("/")) {
-						tf1.setText(Float.toString(nbr1 / nbr2));}
-						else if(Oper.equals("-")) {
-						tf1.setText(Float.toString(nbr1 - nbr2));}
-					nbr1 = 0;
-					System.out.println("Number 2 is " + nbr2);
-					System.out.println("Result is " + tf1.getText());
+					new equals();
 				}
 			});
 			//Clear all button
@@ -256,4 +258,23 @@ public class Calculator extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		
 	}
+	public class equals {
+		public equals() {
+			if (!tf1.getText().equals("")) {
+				nbr2 = Float.valueOf(tf1.getText());
+				if(Oper.equals("+")) {
+					tf1.setText(Float.toString(nbr1 + nbr2));}
+					else if (Oper.equals("*")) {
+					tf1.setText(Float.toString(nbr1 * nbr2));}
+					else if (Oper.equals("/")) {
+					tf1.setText(Float.toString(nbr1 / nbr2));}
+					else if(Oper.equals("-")) {
+					tf1.setText(Float.toString(nbr1 - nbr2));}
+				nbr1 = 0;
+				System.out.println("Number 2 is " + nbr2);
+				System.out.println("Result is " + tf1.getText());
+			}
+		}
+	}
+	
 }
